@@ -1,38 +1,21 @@
 {
-  "version": 1,
-  "lastCheckedAt": "2026-08-15T10:46:18.785Z",
-  "incoming": {
-    "arch": "x64",
-    "artifact": {
-      "platformKey": "win",
-      "type": "installer",
-      "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-setup.exe"
-    },
-    "channel": "stable",
-    "cycleId": "msu93gks-0rnjslma",
-    "metadata": {
-      "channel": "stable",
-      "stableVersion": "0.16.3",
-      "releaseDate": "2026-08-15T09:57:54Z",
-      "platforms": {
-        "win": {
-          "enabled": true,
-          "arch": "x64",
-          "artifacts": {
-            "installer": {
-              "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-setup.exe",
-              "sha256": "a4c5347df4f5d427f7d5cac2ab4d4f42b561681bed628c6fa9d8e6b4d867c51f"
-            },
-            "portable": {
-              "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-portable.zip",
-              "sha256": "c59894589790e964558c72a81d120b4b9f6d8315af7ee26cfec88383bb70b847"
-            }
-          }
+  "channel": "stable",
+  "stableVersion": "0.16.3",
+  "releaseDate": "2026-08-15T09:57:54Z",
+  "platforms": {
+    "win": {
+      "enabled": true,
+      "arch": "x64",
+      "artifacts": {
+        "installer": {
+          "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-setup.exe",
+          "sha256": "a4c5347df4f5d427f7d5cac2ab4d4f42b561681bed628c6fa9d8e6b4d867c51f"
+        },
+        "portable": {
+          "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-portable.zip",
+          "sha256": "c59894589790e964558c72a81d120b4b9f6d8315af7ee26cfec88383bb70b847"
         }
       }
-    },
-    "platformKey": "win",
-    "startedAt": "2026-08-15T10:46:18.796Z",
-    "version": "0.16.3"
+    }
   }
 }
