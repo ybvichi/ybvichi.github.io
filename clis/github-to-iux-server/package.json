@@ -1,0 +1,32 @@
+{
+  "name": "@iux/gtis",
+  "version": "0.1.0",
+  "description": "Analyze GitHub Releases metadata.json (default: ybvichi/open-design / Hi Design). Fetches the latest release, downloads its metadata.json, and reports version, channel, platform artifacts, checksums, and download stats.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "gtis": "bin/gtis.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "github",
+    "releases",
+    "metadata",
+    "open-design",
+    "hi-design",
+    "updater",
+    "cli",
+    "analysis"
+  ],
+  "license": "MIT"
+}
