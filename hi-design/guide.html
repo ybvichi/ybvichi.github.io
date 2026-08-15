@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Hi Design 操作指南"><title>操作指南 — Hi Design</title>
+  <link rel="stylesheet" href="subpage.css">
+</head>
+<body>
+  <header class="site-chrome" id="siteChrome"><div class="nav" id="mainNav"><div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="Hi Design 首页"><img src="images/hi-design-logo.svg" alt="Hi Design"></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="切换导航菜单" aria-expanded="false"><span class="menu-label">菜单</span></button>
+    <nav class="nav-main" aria-label="主导航"><ul class="nav-links"><li><a class="nav-link active" href="guide.html">操作指南</a></li><li><a class="nav-link" href="version.html">版本介绍</a></li></ul></nav>
+  </div></div></header>
+  <main class="compact-main">
+    <div class="container guide-layout">
+      <aside class="guide-sidebar"><p class="brand-sub">操作指南</p><nav id="sidebarNav">
+        <a href="#install" class="group-label">入门</a><a href="#install">如何安装</a><a href="#cli-config">如何配置本地 CLI</a>
+        <a href="#design-system" class="group-label">设计</a><a href="#design-system">如何选择设计系统进行设计</a><a href="#skill">如何选择 Skill 技能进行设计</a>
+        <a href="#share" class="group-label">分享</a><a href="#share">如何分享生成的设计文件</a><a href="#pixso">如何推送到 Pixso 进行微调</a>
+      </nav></aside>
+      <div class="guide-main">
+        <section class="guide-section" id="install">
+          <h2><span class="section-num">1</span>如何安装</h2>
+          <p class="section-desc">选择适合您平台的安装包，几分钟即可完成安装</p>
+          <ol class="step-list">
+            <li><h3>进入首页</h3><p>打开 <a href="index.html">Hi Design 首页</a>，页面会自动识别您的操作系统，显示对应的下载按钮。</p><div class="step-illustration"><img src="images/install/hero.png" alt="首页下载入口"></div><div class="step-note">Windows 用户将看到「下载桌面端 · Windows」按钮；macOS 用户将看到「下载桌面端 · macOS」按钮。</div></li>
+            <li><h3>点击下载</h3><p>确认显示的版本与您的系统一致后，点击下载按钮即可开始下载。</p><div class="step-illustration"><img src="images/install/download-btn.png" alt="下载按钮"></div><div class="step-note">Windows 用户会得到 <code>.exe</code> 安装文件；macOS 用户会得到 <code>.dmg</code> 磁盘映像文件。</div></li>
+            <li><h3>运行安装</h3><p>双击下载的文件，按照安装向导提示完成安装。</p><div class="step-note"><p><strong>Windows：</strong>双击 <code>.exe</code> 文件运行安装向导。如果系统提示"Windows 已保护您的电脑"，请点击"更多信息" → “仍要运行"。</p><p><strong>macOS：</strong>双击 <code>.dmg</code> 文件挂载磁盘映像，然后将 Hi Design 应用拖拽到 Applications 文件夹中。</p></div></li>
+            <li><h3>启动应用</h3><p>安装完成后，在开始菜单（Windows）或 Applications 文件夹（macOS）中找到 Hi Design，双击即可启动。</p><div class="step-illustration"><img src="images/install/product.png" alt="Hi Design 主界面"></div><div class="step-note">首次启动后，您可以开始创建设计项目或选择设计系统进行设计。</div></li>
+          </ol>
+        </section>
+
+        <section class="guide-section" id="cli-config">
+          <h2><span class="section-num">2</span>如何配置本地 CLI</h2>
+          <p class="section-desc">在 Web 界面中选择并配置本地命令行代理工具，让 Hi Design 通过你本机安装的 CLI 执行设计任务</p>
+          <div class="video-container"><video controls poster="resources/video/2如何配置CLI/如何配置CLI-封面.jpg"><source src="resources/video/2如何配置CLI/如何配置CLI.mp4" type="video/mp4"></video></div>
+          <ol class="step-list">
+            <li>
+              <h3>打开本地 CLI 配置面板</h3>
+              <p>在 Hi Design 首页的右上角，找到「本地 CLI」按钮并点击，打开配置面板。</p>
+              <div class="step-illustration"><img src="images/cli/01-homepage-cli-btn.png" alt="首页本地 CLI 按钮位置"></div>
+              <div class="step-note">「本地 CLI」按钮位于页面右上角，显示当前已选择的代理名称。初始状态显示「本地 CLI·未选择·默认」，配置成功后显示具体的代理名称（如「本地 CLI·Claude Code·Sonnet」）。</div>
+            </li>
+            <li>
+              <h3>选择执行模式</h3>
+              <p>点击「本地 CLI」按钮后，会弹出一个下拉面板，顶部显示两种执行模式：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>本地 CLI</strong>：使用本机安装的命令行工具运行提示词</li>
+                <li><strong>自带 Key</strong>：使用自己的 API Key 直接调用模型</li>
+              </ul>
+              <p>选择「本地 CLI」模式后，系统会自动扫描 PATH 中可用的 CLI 工具。</p>
+              <div class="step-illustration"><img src="images/cli/02-cli-dropdown.png" alt="本地 CLI 下拉面板"></div>
+              <div class="step-note">如果 PATH 中未发现可用的 CLI，面板会显示「PATH 中未发现可用 CLI」。此时可以点击「打开执行设置」进入详细的配置页面。</div>
+            </li>
+            <li>
+              <h3>进入执行设置页面</h3>
+              <p>点击下拉面板底部的「打开执行设置」，进入详细的执行模式设置弹窗。</p>
+              <div class="step-illustration"><img src="images/cli/03-execution-settings.png" alt="执行设置弹窗"></div>
+              <p>执行设置页面分为左右两部分：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>左侧菜单</strong>：包含执行模式、指令/规则、记忆、媒体生成提供商、外部 MCP、连接器、MCP 服务器、界面语言、外观、设计评审团、通知、宠物、设计系统、项目位置、隐私、关于等设置项</li>
+                <li><strong>右侧内容</strong>：显示当前选中设置项的详细配置</li>
+              </ul>
+            </li>
+            <li>
+              <h3>选择代理工具</h3>
+              <p>在「执行模式」页面的「你的 CLI」区域，可以看到系统已扫描到的本地 CLI 工具列表。每个 CLI 卡片显示：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>名称与图标</strong>：如 Claude Code、Codex CLI、GitHub Copilot CLI 等</li>
+                <li><strong>描述</strong>：CLI 的来源说明，如「Anthropic official CLI」</li>
+                <li><strong>版本</strong>：已安装的 CLI 版本号</li>
+                <li><strong>模型</strong>：当前使用的模型配置，默认显示「Default (CLI config)」</li>
+              </ul>
+              <p>点击想要使用的 CLI 卡片即可选中该代理工具。</p>
+              <div class="step-note">Hi Design 支持多种本地 CLI 代理，包括 Claude Code（Anthropic 官方）、Codex CLI（OpenAI 官方）、GitHub Copilot CLI（GitHub 官方）等。如果 PATH 中未发现可用的 CLI，请确保已安装对应的 CLI 工具并将其添加到系统 PATH 中。</div>
+            </li>
+            <li>
+              <h3>安装更多 CLI（可选）</h3>
+              <p>在「你的 CLI」列表下方，点击「可安装」展开区域，可以看到更多可安装的 CLI 工具列表（共 21 个）。每个条目显示：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>CLI 名称</strong>：如 Devin for Terminal、OpenCode、Hermes、Trae CLI 等</li>
+                <li><strong>描述</strong>：CLI 的简要说明</li>
+                <li><strong>安装状态</strong>：显示「安装」按钮或「已安装」状态</li>
+              </ul>
+              <p>点击「安装」按钮，按照提示完成对应 CLI 的安装。安装完成后，点击「重新扫描」按钮刷新列表。</p>
+            </li>
+            <li>
+              <h3>重新扫描 CLI</h3>
+              <p>如果安装或卸载了 CLI 工具，可以点击「你的 CLI」区域右上角的「重新扫描」按钮，让 Hi Design 重新扫描 PATH 中的可用 CLI。</p>
+              <div class="step-note">如果你通过 npm 或 Homebrew 安装了 CLI，但仍显示为未安装，请确认该工具的 bin 目录已加入 Hi Design daemon 继承的 PATH（在 macOS 上，Terminal 与 GUI 应用的 PATH 可能不同）。请参阅 QUICKSTART.md（「Local agent CLI and PATH」章节）。</div>
+            </li>
+            <li>
+              <h3>验证配置</h3>
+              <p>配置完成后，关闭设置弹窗返回首页。确认右上角「本地 CLI」按钮显示你选择的代理名称（如「本地 CLI·Claude Code·Sonnet」），表示配置已成功生效。</p>
+              <p>此时你可以在输入框中输入提示词，点击「发送」按钮，Hi Design 将通过你配置的本地 CLI 工具执行设计任务。</p>
+            </li>
+          </ol>
+          <div class="step-note" style="margin-top:24px">
+            <p><strong>💡 常见问题</strong></p>
+            <p><strong>Q: 为什么 PATH 中未发现可用 CLI？</strong></p>
+            <p>A: 请确保已安装对应的 CLI 工具（如 <code>claude</code>、<code>codex</code> 等），并且已将其添加到系统 PATH 环境变量中。安装后需要点击「重新扫描」按钮刷新列表。在 macOS 上，Terminal 与 GUI 应用的 PATH 可能不同，需要特别注意。</p>
+            <p style="margin-top:8px"><strong>Q: 如何切换回默认代理？</strong></p>
+            <p>A: 重新打开本地 CLI 配置面板，在「你的 CLI」列表中选择其他代理工具即可。或者切换到「自带 Key」模式，使用自己的 API Key 直接调用模型。</p>
+            <p style="margin-top:8px"><strong>Q: 安装了 CLI 但扫描不到怎么办？</strong></p>
+            <p>A: 请按照以下步骤排查：1）在目标代理卡片上打开「安装」或「文档」链接；2）返回 Hi Design 之前，请先在对应 CLI 中完成认证（登录或添加 API 凭据）；3）在此区域点击「重新扫描」；4）当代理显示为已安装后，选择该代理卡片。</p>
+          </div>
+        </section>
+
+        <section class="guide-section" id="design-system">
+          <h2><span class="section-num">3</span>如何选择设计系统进行设计</h2>
+          <p class="section-desc">了解 Hi Design 内置的设计系统，选择适合您项目的视觉规范。默认使用 HUI 设计系统，开箱即用</p>
+          <div class="video-container"><video controls poster="resources/video/3如何选择设计系统进行设计/如何选择设计系统进行设计-封面.jpg"><source src="resources/video/3如何选择设计系统进行设计/如何选择设计系统进行设计.mp4" type="video/mp4"></video></div>
+          <ol class="step-list">
+            <li>
+              <h3>了解默认设计系统 — HUI</h3>
+              <p><strong>Hi Design 默认使用 HUI 设计系统</strong>，由海康 HUI 设计 token 整理而成。首次打开 Hi Design 时，无需任何操作，系统已自动采用 HUI 作为默认设计系统。</p>
+              <div class="step-illustration"><img src="images/design-system/04-homepage-hui-selected.png" alt="首页默认使用HUI设计系统"></div>
+              <p>HUI 设计系统的特点：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>双层 token 结构</strong>：上层是 56 个 Open Design 契约 token（供通用组件与跨品牌切换），下层是完整的 HUI 原生 token</li>
+                <li><strong>浅色主题</strong>：默认提供浅色主题的设计 token，适合大多数设计场景</li>
+                <li><strong>字体排版</strong>：包含 h-icon 等字体样式，统一视觉风格</li>
+              </ul>
+              <div class="step-note">HUI 是 Hi Design 的官方推荐设计系统，适合大多数设计场景。如果您没有特殊需求，直接使用默认的 HUI 即可，无需额外配置。</div>
+            </li>
+            <li>
+              <h3>打开设计系统选择器</h3>
+              <p>如果需要切换设计系统，在 Hi Design 首页的输入框下方，找到设计系统按钮（默认显示「HUI」）并点击，打开设计系统选择面板。</p>
+              <div class="step-illustration"><img src="images/design-system/01-homepage-ds-btn.png" alt="首页设计系统按钮位置"></div>
+              <div class="step-note">设计系统按钮位于输入框下方，默认显示「HUI」。点击后会弹出设计系统选择面板，展示所有可用的设计系统列表。</div>
+            </li>
+            <li>
+              <h3>浏览设计系统列表</h3>
+              <p>点击后会弹出设计系统选择面板，面板分为左右两部分：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>左侧列表</strong>：显示所有可用的设计系统名称，包括「不指定设计系统」和「官方预设」分类下的各种设计系统（如 Neutral Modern、Agentic、Airbnb、Airtable、Apple 等）</li>
+                <li><strong>右侧预览</strong>：显示当前选中设计系统的详细信息，包括品牌标识、字体排版、调色板等视觉预览</li>
+              </ul>
+              <div class="step-illustration"><img src="images/design-system/02-ds-picker-loaded.png" alt="设计系统选择面板"></div>
+              <div class="step-note">设计系统选择面板加载后，默认展示 HUI 设计系统的预览信息。将鼠标悬停在左侧任意设计系统名称上，右侧会实时显示该设计系统的预览信息。</div>
+            </li>
+            <li>
+              <h3>预览设计系统详情</h3>
+              <p>将鼠标悬停在左侧的设计系统名称上，右侧预览区域会显示该设计系统的详细信息：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>品牌标识</strong>：设计系统的简介和特点说明</li>
+                <li><strong>字体排版</strong>：显示该设计系统使用的字体样式（如 Display、Body、Mono 等）</li>
+                <li><strong>调色板</strong>：展示设计系统的主色调和配色方案</li>
+              </ul>
+              <div class="step-illustration"><img src="images/design-system/03-ds-hover-preview.png" alt="设计系统预览"></div>
+              <div class="step-note">预览信息帮助您了解每个设计系统的视觉风格，方便选择最适合项目需求的设计系统。例如，Neutral Modern 是「A clean, product-oriented default」，适合 B2B 工具、仪表盘和工具页面。</div>
+            </li>
+            <li>
+              <h3>搜索并选择设计系统</h3>
+              <p>如果设计系统列表较长，可以使用面板顶部的搜索框快速查找。输入关键词（如「HUI」），列表会实时过滤匹配的设计系统。</p>
+              <div class="step-illustration"><img src="images/design-system/05-ds-picker-hui-selected.png" alt="搜索并选择HUI设计系统"></div>
+              <p>在列表中找到想要使用的设计系统，点击即可选中。选中后，面板底部的按钮会显示「打开预览」，点击可以查看更详细的设计系统预览。</p>
+              <div class="step-note">搜索框支持实时搜索，输入关键词后会自动过滤列表。点击「清除」按钮可以清空搜索内容，恢复显示全部设计系统。</div>
+            </li>
+            <li>
+              <h3>创建自定义设计系统（可选）</h3>
+              <p>如果内置的设计系统无法满足需求，可以点击面板右上角的「创建」按钮，创建自定义设计系统。</p>
+              <div class="step-illustration"><img src="images/design-system/05-ds-create-dialog.png" alt="创建设计系统"></div>
+              <p>创建设计系统需要三个步骤：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>Website or DESIGN.md</strong>：粘贴链接、选择品牌或复制 token</li>
+                <li><strong>Add material</strong>：添加图片、字体、repo 或 .fig 文件（可选）</li>
+                <li><strong>Generate</strong>：快速提取设计系统，AI 后续可继续细化</li>
+              </ul>
+              <p>您也可以通过 GitHub 仓库、网站、DESIGN.md 或能体现风格的文件开始创建。Hi Design 会先快速创建一套可用系统，然后 AI 可在项目中继续细化。</p>
+              <div class="step-note">创建自定义设计系统需要一定的设计基础。如果您是初次使用，建议先使用默认的 HUI 设计系统熟悉流程，再尝试创建自定义设计系统。</div>
+            </li>
+            <li>
+              <h3>验证设计系统选择</h3>
+              <p>选择设计系统后，关闭选择面板返回首页。确认输入框下方的设计系统按钮显示您选择的名称（如「HUI」），表示设计系统已成功切换。</p>
+              <p>此时您在输入框中输入提示词并发送，Hi Design 将使用您选择的设计系统的视觉规范来生成设计。</p>
+            </li>
+          </ol>
+          <div class="step-note" style="margin-top:24px">
+            <p><strong>💡 常见问题</strong></p>
+            <p><strong>Q: 默认使用的是什么设计系统？</strong></p>
+            <p>A: <strong>Hi Design 默认使用 HUI 设计系统</strong>，由海康 HUI 设计 token 整理而成。首次打开应用时无需任何配置，系统已自动采用 HUI 作为默认设计系统。如果您没有特殊需求，直接使用默认设置即可。</p>
+            <p style="margin-top:8px"><strong>Q: 设计系统选择面板加载很慢怎么办？</strong></p>
+            <p>A: 设计系统列表需要从服务器加载，请确保网络连接正常。如果加载时间过长，可以尝试刷新页面或检查网络连接。</p>
+            <p style="margin-top:8px"><strong>Q: 如何切换回默认设计系统？</strong></p>
+            <p>A: 重新打开设计系统选择面板，选择「HUI」即可切换回默认设计系统。或者选择「不指定设计系统」来使用系统默认设置。</p>
+            <p style="margin-top:8px"><strong>Q: 自定义设计系统可以分享给团队成员吗？</strong></p>
+            <p>A: 可以。创建的设计系统会保存在您的账户中，团队成员可以在设计系统列表中看到并使用。</p>
+          </div>
+        </section>
+        <section class="guide-section" id="skill">
+          <h2><span class="section-num">4</span>如何选择 Skill 技能进行设计</h2>
+          <p class="section-desc">掌握 Skill 技能的选择与使用，让 AI 按照特定能力执行设计任务</p>
+          <div class="video-container"><video controls poster="resources/video/4如何选择skill技能进行设计/如何选择skill技能进行设计-封面.jpg"><source src="resources/video/4如何选择skill技能进行设计/如何选择skill技能进行设计.mp4" type="video/mp4"></video></div>
+          <ol class="step-list">
+            <li>
+              <h3>在输入框中输入 "@" 触发技能选择面板</h3>
+              <p>在 Hi Design 首页的输入框中，输入 "@" 符号，系统会自动弹出技能选择面板。</p>
+              <div class="step-illustration"><img src="images/skill/01-skill-at-trigger.png" alt="输入@触发技能选择面板"></div>
+              <p>技能选择面板顶部显示多个分类标签：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>全部</strong>：显示所有可用的技能和插件（共 743 个）</li>
+                <li><strong>设计文件</strong>：设计相关的文件和模板</li>
+                <li><strong>插件</strong>：可扩展功能的插件（459 个）</li>
+                <li><strong>技能</strong>：AI 执行设计任务的技能（284 个）</li>
+                <li><strong>MCP</strong>：模型上下文协议相关的工具</li>
+                <li><strong>Connectors</strong>：外部系统连接器</li>
+              </ul>
+              <div class="step-note">输入 "@" 后，技能选择面板会自动弹出。如果面板没有自动出现，请确保输入框已获得焦点。</div>
+            </li>
+            <li>
+              <h3>切换到「技能」标签并选择技能</h3>
+              <p>在技能选择面板中，点击「技能」标签，切换到技能列表视图。这里展示了所有可用的 AI 技能，每个技能卡片显示：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>技能名称</strong>：如「3D动画男孩搭建Lego」、「Agentic」、「Airbnb」等</li>
+                <li><strong>技能描述</strong>：简要说明该技能的功能和用途</li>
+                <li><strong>来源标识</strong>：显示「Official」表示官方技能</li>
+              </ul>
+              <p>在技能列表中，点击想要使用的技能条目，该技能会被插入到输入框中。然后您可以继续输入设计需求，AI 将按照该技能的能力来执行设计任务。</p>
+              <!-- TODO: 需要重新截图 — 技能选择面板中「技能」标签被选中，且已选中某个技能（如 ad-creative）的状态 -->
+              <div class="step-illustration"><img src="images/skill/02-skill-tab-selected.png" alt="切换到技能标签后的列表"></div>
+              <div class="step-note">技能列表包含 284 个技能，涵盖了从 3D 动画、平面设计到数据分析等各种设计场景。您可以根据项目需求选择合适的技能。</div>
+            </li>
+            <li>
+              <h3>通过左侧「集成」菜单浏览技能（可选）</h3>
+              <p>除了通过 "@" 触发技能选择面板外，您还可以通过左侧导航菜单来浏览和管理技能：</p>
+              <ol style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li>点击左上角的菜单按钮（或按快捷键）打开左侧导航栏</li>
+                <li>在导航栏中找到并点击「集成」菜单</li>
+                <li>在「集成」页面中，切换到「技能」标签</li>
+                <li>浏览所有可用的技能，并可以查看已安装的技能列表</li>
+              </ol>
+              <!-- TODO: 需要重新截图 — 左侧导航栏展开，显示「集成」菜单及其子菜单的状态 -->
+              <div class="step-illustration"><img src="images/skill/03-integration-menu.png" alt="通过左侧集成菜单浏览技能"></div>
+              <div class="step-note">通过「集成」菜单，您可以更全面地管理技能，包括查看技能详情、安装新技能、卸载不需要的技能等。</div>
+            </li>
+            <li>
+              <h3>新建自定义技能（可选）</h3>
+              <p>如果内置的技能无法满足您的需求，您可以创建自定义技能。在「集成」>「技能」页面中，点击「新建技能」按钮，按照提示创建属于您自己的技能。</p>
+              <div class="step-illustration"><img src="images/skill/04-create-skill.png" alt="创建自定义技能界面"></div>
+              <p>创建自定义技能需要：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>技能名称</strong>：为您的技能命名</li>
+                <li><strong>技能描述</strong>：说明该技能的功能和用途</li>
+                <li><strong>技能配置</strong>：定义技能的触发条件和执行逻辑</li>
+              </ul>
+              <div class="step-note">创建自定义技能需要一定的技术基础。如果您是初次使用，建议先熟悉内置技能的使用方法，再尝试创建自定义技能。</div>
+            </li>
+          </ol>
+          <div class="step-note" style="margin-top:24px">
+            <p><strong>💡 常见问题</strong></p>
+            <p><strong>Q: 输入 "@" 后没有弹出技能选择面板怎么办？</strong></p>
+            <p>A: 请确保输入框已获得焦点（点击输入框后再输入 "@"）。如果仍然没有弹出，尝试刷新页面后重试。</p>
+            <p style="margin-top:8px"><strong>Q: 可以同时使用多个技能吗？</strong></p>
+            <p>A: 是的，您可以在输入框中选择多个技能，AI 会综合这些技能的能力来执行设计任务。</p>
+            <p style="margin-top:8px"><strong>Q: 自定义技能可以分享给团队成员吗？</strong></p>
+            <p>A: 可以。创建的自定义技能会保存在您的账户中，团队成员可以在技能列表中看到并使用。</p>
+          </div>
+        </section>
+        <section class="guide-section" id="share">
+          <h2><span class="section-num">5</span>如何分享生成的设计文件</h2>
+          <p class="section-desc">将您的设计成果通过链接分享给团队成员或合作伙伴，方便协作与审阅</p>
+          <div class="video-container"><video controls poster="resources/video/5如何分享生成的设计文件/如何分享生成的设计文件-封面.jpg"><source src="resources/video/5如何分享生成的设计文件/如何分享生成的设计文件.mp4" type="video/mp4"></video></div>
+          <ol class="step-list">
+            <li>
+              <h3>打开设计文件</h3>
+              <p>在 Hi Design 中完成设计后，确保当前正在查看您想要分享的设计文件。设计文件会在右侧的预览区域中显示。</p>
+              <div class="step-illustration"><img src="images/share/01-share-btn.png" alt="设计文件预览界面"></div>
+              <div class="step-note">分享功能适用于所有已生成的设计文件，包括 HTML 页面、图片、视频等。确保文件已正确渲染后再进行分享。</div>
+            </li>
+            <li>
+              <h3>点击「分享」按钮</h3>
+              <p>在页面右上方的工具栏中，找到「分享」按钮并点击。分享按钮位于「推送」按钮左侧，图标为一个向外分享的箭头。</p>
+              <div class="step-illustration"><img src="images/share/02-share-dialog.png" alt="点击分享按钮后的下拉菜单"></div>
+              <p>点击后会弹出一个下拉菜单，提供两个分享选项：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>复制分享链接</strong>：生成一个可分享的链接，复制到剪贴板，方便通过邮件、即时通讯工具等发送给他人</li>
+                <li><strong>分享到项目广场</strong>：将设计文件发布到项目广场，供更多用户浏览和参考</li>
+              </ul>
+              <div class="step-note">「复制分享链接」是最常用的分享方式，适合需要私下分享给特定人员或团队的场景。「分享到项目广场」则适合展示优秀作品或寻求社区反馈。</div>
+            </li>
+            <li>
+              <h3>复制分享链接</h3>
+              <p>点击「复制分享链接」选项，系统会自动生成一个分享链接并将其复制到您的剪贴板。</p>
+              <div class="step-illustration"><img src="images/share/03-share-link-copied.png" alt="复制链接成功提示"></div>
+              <p>复制成功后，页面顶部会显示「复制链接成功」的提示，表示链接已准备好可以粘贴分享。</p>
+              <div class="step-note">分享链接包含当前设计文件的完整访问路径，接收者打开链接即可查看设计内容，无需登录或额外权限。请妥善保管分享链接，避免泄露给非授权人员。</div>
+            </li>
+            <li>
+              <h3>粘贴并分享链接</h3>
+              <p>将复制的链接粘贴到您想要分享的渠道中：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>即时通讯</strong>：微信、钉钉、飞书、Slack 等，直接粘贴链接发送给同事</li>
+                <li><strong>邮件</strong>：在邮件正文中粘贴链接，方便收件人点击查看</li>
+                <li><strong>文档</strong>：嵌入到设计文档、需求文档或会议纪要中</li>
+                <li><strong>项目管理工具</strong>：Jira、Notion、Trello 等任务或文档中附加链接</li>
+              </ul>
+              <div class="step-note">接收者点击链接后，将直接打开设计文件的预览页面，可以查看完整的设计效果。如果设计文件包含交互元素，接收者也可以正常体验交互效果。</div>
+            </li>
+          </ol>
+          <div class="step-note" style="margin-top:24px">
+            <p><strong>💡 常见问题</strong></p>
+            <p><strong>Q: 分享链接的有效期是多久？</strong></p>
+            <p>A: 分享链接默认长期有效。只要设计文件未被删除或项目未被移除，链接就可以一直访问。如果您需要撤销分享，可以联系管理员处理。</p>
+            <p style="margin-top:8px"><strong>Q: 分享后其他人可以编辑我的设计吗？</strong></p>
+            <p>A: 通过「复制分享链接」分享的设计文件，接收者只能查看，无法编辑。如果您需要协作编辑，请使用项目内的协作功能或邀请团队成员加入项目。</p>
+            <p style="margin-top:8px"><strong>Q: 为什么点击分享后没有反应？</strong></p>
+            <p>A: 请确保当前页面已完全加载，且您正在查看一个已生成的设计文件。如果问题持续，尝试刷新页面后重试。</p>
+            <p style="margin-top:8px"><strong>Q: 可以分享到项目广场后撤回吗？</strong></p>
+            <p>A: 分享到项目广场的内容通常需要管理员审核。如需撤回，请联系项目管理员或支持团队处理。</p>
+          </div>
+        </section>
+        <section class="guide-section" id="pixso">
+          <h2><span class="section-num">6</span>如何推送到 Pixso 进行微调</h2>
+          <p class="section-desc">将设计文件一键推送到 Pixso，在 Pixso 中使用 AI Builder Dev 插件进行进一步的协作与微调</p>
+          <div class="video-container"><video controls poster="resources/video/6如何推送到pixso进行微调/如何推送到pixso进行微调-封面.jpg"><source src="resources/video/6如何推送到pixso进行微调/如何推送到pixso进行微调.mp4" type="video/mp4"></video></div>
+          <ol class="step-list">
+            <li>
+              <h3>确保 Pixso 中已打开 AI Builder Dev 插件</h3>
+              <p>在推送之前，请确保您已在 Pixso 中安装并打开了 <strong>AI Builder Dev</strong> 插件。这是接收 Hi Design 推送内容的必要条件。</p>
+              <div class="step-note">如果尚未安装 AI Builder Dev 插件，请先在 Pixso 的插件市场中搜索并安装。安装完成后，在 Pixso 编辑器中打开该插件，确保其处于就绪状态。</div>
+            </li>
+            <li>
+              <h3>打开设计文件</h3>
+              <p>在 Hi Design 中完成设计后，确保当前正在查看您想要推送到 Pixso 的设计文件。设计文件会在右侧的预览区域中显示。</p>
+              <div class="step-illustration"><img src="images/pixso/01-push-btn.png" alt="设计文件预览界面"></div>
+              <div class="step-note">推送功能适用于所有已生成的设计文件。确保文件已正确渲染，并且是您想要推送到 Pixso 的最终版本。</div>
+            </li>
+            <li>
+              <h3>点击「推送」按钮</h3>
+              <p>在页面右上方的工具栏中，找到「推送」按钮并点击。推送按钮位于「分享」按钮右侧，图标为一个向上的箭头。</p>
+              <div class="step-illustration"><img src="images/pixso/02-push-dropdown.png" alt="点击推送按钮后的下拉菜单"></div>
+              <p>点击后会弹出一个下拉菜单，显示「推送到 Pixso」选项，并附带提示「请确保 Pixso 中已打开 AI Builder Dev 插件」。</p>
+              <div class="step-note">「推送」功能将当前设计文件发送到 Pixso 平台，方便您在 Pixso 中使用专业的设计工具进行进一步的编辑和微调。与「分享」不同，推送是将文件传输到另一个设计平台，而不是生成可分享的链接。</div>
+            </li>
+            <li>
+              <h3>选择「推送到 Pixso」</h3>
+              <p>在下拉菜单中点击「推送到 Pixso」选项，系统会立即开始将设计文件推送到 Pixso。</p>
+              <div class="step-illustration"><img src="images/pixso/03-push-to-pixso.png" alt="推送到 Pixso 成功提示"></div>
+              <p>推送成功后，页面顶部会显示「已推送到 Pixso」的成功提示，表示文件已成功传输到 Pixso 平台。</p>
+              <div class="step-note">推送过程通常很快，取决于设计文件的复杂程度和网络状况。如果文件包含大量图片或复杂布局，推送可能需要稍长时间。</div>
+            </li>
+            <li>
+              <h3>在 Pixso 中进行微调</h3>
+              <p>推送完成后，切换到 Pixso 编辑器，您会在 AI Builder Dev 插件中看到从 Hi Design 推送过来的设计文件。</p>
+              <p>在 Pixso 中，您可以对设计进行以下微调操作：</p>
+              <ul style="margin:8px 0 8px 20px;color:var(--soft);font-size:14px;line-height:1.7">
+                <li><strong>调整布局</strong>：修改元素的位置、大小和对齐方式</li>
+                <li><strong>编辑样式</strong>：调整颜色、字体、间距等视觉样式</li>
+                <li><strong>添加交互</strong>：为设计添加原型交互和动画效果</li>
+                <li><strong>组件化管理</strong>：将设计元素转换为可复用的组件</li>
+                <li><strong>导出资源</strong>：导出设计稿为图片、SVG 或其他格式</li>
+              </ul>
+              <div class="step-note">Pixso 是一款专业的设计协作工具，提供了比 Hi Design 更精细的设计编辑能力。建议在 Hi Design 中完成设计初稿后，推送到 Pixso 进行细节打磨和团队协作。</div>
+            </li>
+          </ol>
+          <div class="step-note" style="margin-top:24px">
+            <p><strong>💡 常见问题</strong></p>
+            <p><strong>Q: 推送失败怎么办？</strong></p>
+            <p>A: 请检查以下几点：1）确保 Pixso 中已打开 AI Builder Dev 插件；2）检查网络连接是否正常；3）确认 Pixso 账号已登录且有权限接收推送内容。如果问题持续，尝试重新打开 Pixso 插件后重试。</p>
+            <p style="margin-top:8px"><strong>Q: 推送到 Pixso 后，Hi Design 中的设计会更新吗？</strong></p>
+            <p>A: 不会。推送是单向传输，从 Hi Design 到 Pixso。在 Pixso 中的修改不会自动同步回 Hi Design。如果您需要在 Hi Design 中继续迭代，建议保留原始设计文件，在 Pixso 中完成微调后手动将修改内容反馈到 Hi Design。</p>
+            <p style="margin-top:8px"><strong>Q: 可以推送哪些类型的设计文件到 Pixso？</strong></p>
+            <p>A: 目前支持推送 HTML 页面设计到 Pixso。包括网页布局、UI 界面、营销页面等。复杂的交互式组件和动画效果在 Pixso 中可能需要重新实现。</p>
+            <p style="margin-top:8px"><strong>Q: 推送到 Pixso 后，其他团队成员可以看到吗？</strong></p>
+            <p>A: 这取决于您的 Pixso 项目权限设置。如果 Pixso 项目是公开的或团队成员有访问权限，他们可以在 AI Builder Dev 插件中看到推送的设计文件。请确保在 Pixso 中正确设置项目权限。</p>
+          </div>
+        </section>
+        <footer><p>&copy; 2026 Open Design. All rights reserved. &nbsp;·&nbsp; <a href="index.html">首页</a> &nbsp;·&nbsp; <a href="guide.html">操作指南</a></p></footer>
+      </div>
+    </div>
+  </main>
+  <script src="subpage.js"></script>
+  <script>
+  (function(){var tabs=document.querySelectorAll('.platform-tab');var contents=document.querySelectorAll('.platform-content');tabs.forEach(function(tab){tab.addEventListener('click',function(){var target=tab.dataset.target;tabs.forEach(function(t){t.classList.toggle('active',t===tab)});contents.forEach(function(c){c.classList.toggle('active',c.id==='platform-'+target)})})})})();
+  </script>
+</body></html>

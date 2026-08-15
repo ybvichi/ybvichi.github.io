@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>版本说明 — Open Design</title>
+<style>
+:root {
+--bg: #f6f7f9;
+--card-bg: #fff;
+--border: #e2e6ea;
+--text: #1f2328;
+--text-muted: #57606a;
+--accent: #0969da;
+--accent-soft: #ddf4ff;
+--section-bg: #f0f3f6;
+--code-bg: #f6f8fa;
+--radius: 12px;
+--radius-sm: 8px;
+--success: #1a7f37;
+--success-soft: #dafbe1;
+--warning: #9a6700;
+--warning-soft: #fff8c5;
+--danger: #cf222e;
+--danger-soft: #ffebe9;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.6;
+min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== TOP NAV ===== */
+.topnav {
+position: sticky; top: 0; z-index: 100;
+background: var(--card-bg);
+border-bottom: 1px solid var(--border);
+padding: 0 20px;
+}
+.topnav-inner {
+max-width: 100%; margin: 0 auto;
+height: 44px; display: flex; align-items: center; justify-content: space-between;
+}
+.topnav-brand { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+.topnav-brand:hover { text-decoration: none; }
+.topnav nav { display: flex; gap: 4px; }
+.topnav nav a { padding: 5px 12px; border-radius: 6px; font-size: 13px; color: var(--text-muted); text-decoration: none; }
+.topnav nav a:hover { background: var(--accent-soft); color: var(--accent); text-decoration: none; }
+.topnav nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+/* ===== LAYOUT (sidebar + main) ===== */
+.layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 44px); }
+.sidebar {
+position: sticky; top: 44px; align-self: start; height: calc(100vh - 44px); overflow-y: auto;
+background: var(--card-bg); border-right: 1px solid var(--border); padding: 24px 16px;
+}
+.sidebar .brand { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+.sidebar .brand-sub { font-size: 12px; color: var(--text-muted); margin: 0 0 16px; }
+.sidebar nav a {
+display: block; padding: 6px 10px; border-radius: 6px; color: var(--text);
+text-decoration: none; font-size: 13px; margin: 2px 0;
+}
+.sidebar nav a:hover { background: var(--accent-soft); color: var(--accent); text-decoration: none; }
+.sidebar nav a.group-label {
+font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted);
+padding: 8px 10px 3px; margin-top: 6px;
+}
+.sidebar nav a.group-label:hover { background: transparent; color: var(--text-muted); }
+.main { padding: 32px 40px 80px; max-width: 900px; }
+.main > header { border-bottom: 2px solid var(--border); padding-bottom: 16px; margin-bottom: 28px; }
+.main > header h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.5px; }
+.main > header .meta { color: var(--text-muted); font-size: 13px; }
+
+/* ===== CHANGELOG SECTIONS ===== */
+.changelog-section {
+background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+padding: 32px; margin-bottom: 32px; scroll-margin-top: 24px;
+}
+.changelog-section h2 {
+font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.changelog-section h2 .badge {
+display: inline-flex; align-items: center; justify-content: center;
+padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;
+flex-shrink: 0;
+}
+.badge-added { background: var(--success-soft); color: var(--success); }
+.badge-changed { background: var(--warning-soft); color: var(--warning); }
+.badge-fixed { background: var(--danger-soft); color: var(--danger); }
+
+.feature-list { list-style: none; }
+.feature-list > li {
+position: relative; padding-left: 28px; margin-bottom: 16px;
+}
+.feature-list > li:last-child { margin-bottom: 0; }
+.feature-list > li::before {
+content: ""; position: absolute; left: 0; top: 8px;
+width: 8px; height: 8px; border-radius: 50%;
+background: var(--accent); flex-shrink: 0;
+}
+.feature-list h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.feature-list p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.feature-list ul {
+margin: 8px 0 0 0; padding-left: 0; list-style: none;
+}
+.feature-list ul li {
+position: relative; padding-left: 20px; margin-bottom: 6px;
+font-size: 14px; color: var(--text-muted); line-height: 1.7;
+}
+.feature-list ul li::before {
+content: "•"; position: absolute; left: 0;
+color: var(--accent); font-weight: 700;
+}
+
+.sub-feature-list {
+margin: 10px 0 0 0; padding-left: 0; list-style: none;
+}
+.sub-feature-list li {
+position: relative; padding-left: 24px; margin-bottom: 8px;
+font-size: 14px; color: var(--text-muted); line-height: 1.7;
+}
+.sub-feature-list li::before {
+content: "›"; position: absolute; left: 0;
+color: var(--accent); font-weight: 700; font-size: 16px;
+}
+
+.version-header {
+display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+}
+.version-tag {
+display: inline-flex; align-items: center; gap: 6px;
+padding: 4px 12px; background: var(--accent); color: #fff;
+border-radius: 6px; font-size: 13px; font-weight: 600;
+}
+.version-date {
+font-size: 13px; color: var(--text-muted);
+}
+
+footer { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 40px; color: var(--text-muted); font-size: 12px; }
+footer a { color: var(--text-muted); text-decoration: none; margin: 0 6px; }
+footer a:hover { color: var(--text); }
+
+@media (max-width: 900px) {
+.layout { grid-template-columns: 1fr; }
+.sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+.main { padding: 20px; }
+.changelog-section { padding: 24px 20px; }
+}
+@media (max-width: 520px) {
+.topnav nav a { padding: 5px 8px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="topnav">
+<div class="topnav-inner">
+<a class="topnav-brand" href="index.html">Open Design</a>
+<nav>
+<a href="index.html">首页</a>
+<a href="guide.html">操作指南</a>
+<a class="active" href="changelog.html">版本说明</a>
+</nav>
+</div>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<p class="brand-sub">版本说明</p>
+<nav id="sidebarNav">
+<a href="#v0161" class="group-label">版本历史</a>
+<a href="#v0162">v0.16.3 — IUX版本</a>
+</nav>
+</aside>
+<main class="main">
+<header>
+<h1>版本说明</h1>
+<p class="meta">Open Design 各版本更新记录与功能变更</p>
+</header>
+
+<!-- v0.16.3 IUX版本 -->
+<section class="changelog-section" id="v0162">
+<div class="version-header">
+<span class="version-tag">v0.16.3</span>
+<span class="version-date">IUX 版本核心功能开发</span>
+</div>
+
+<h2><span class="badge badge-added">新增</span></h2>
+<ul class="feature-list">
+<li>
+<h3>根据项目约束，改造 HUI 设计系统，并预置在工程中</h3>
+<p>针对 IUX 项目需求，对 HUI 设计系统进行全面改造与适配，并将其预置集成到工程环境中，确保设计规范与项目约束高度一致。</p>
+</li>
+<li>
+<h3>使用数据运营</h3>
+<p>引入数据运营能力，支持对设计过程中的关键数据进行采集、统计与分析：</p>
+<ul class="sub-feature-list">
+<li>采集脚本开发</li>
+<li>采集脚本预置到安装包中</li>
+<li>数据运营看板开发</li>
+</ul>
+</li>
+<li>
+<h3>将设计成果推送到 Pixso</h3>
+<p>支持将设计成果直接推送到 Pixso 平台，便于后续协作与微调：</p>
+<ul class="sub-feature-list">
+<li>设计稿 HTML 推送</li>
+<li>图片推送</li>
+</ul>
+</li>
+<li>
+<h3>版本更新说明 & 操作指南指引</h3>
+<p>新增版本更新说明页面与操作指南入口，帮助用户快速了解新功能并上手使用。</p>
+</li>
+</ul>
+
+<h2><span class="badge badge-changed">更改</span></h2>
+<ul class="feature-list">
+<li>
+<h3>项目广场改造，新增 IUX 团队 Tag</h3>
+<p>对项目广场进行界面改造，新增 IUX 团队标识 Tag，提升团队项目的识别度与归属感。</p>
+</li>
+<li>
+<h3>品牌名称 & Logo 改造</h3>
+<p>对品牌名称及 Logo 进行重新设计与升级，统一视觉识别体系。</p>
+</li>
+</ul>
+
+<h2><span class="badge badge-fixed">修复</span></h2>
+<ul class="feature-list">
+<li>
+<h3>部分功能体验优化</h3>
+<p>针对用户反馈，对以下功能进行体验优化：</p>
+<ul class="sub-feature-list">
+<li>默认语言</li>
+<li>默认设计系统</li>
+</ul>
+</li>
+</ul>
+</section>
+
+<footer>
+<p>&copy; 2026 Open Design. All rights reserved. &nbsp;&middot;&nbsp; <a href="index.html">首页</a> &nbsp;&middot;&nbsp; <a href="guide.html">操作指南</a> &nbsp;&middot;&nbsp; <a href="changelog.html">版本说明</a></p>
+</footer>
+</main>
+</div>
+</body>
+</html>

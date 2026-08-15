@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享设计给单个用户 - API 文档</title>
+    <style>
+        :root {
+            --color-primary: #3b82f6;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-danger: #ef4444;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-bg: #f3f4f6;
+            --color-card: #ffffff;
+            --color-code-bg: #1e293b;
+            --color-get: #3b82f6;
+            --color-post: #10b981;
+            --font-mono: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Main Layout */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            gap: 24px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+            padding: 0 12px;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .sidebar-item:hover {
+            background: var(--color-bg);
+        }
+
+        .sidebar-item.active {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .sidebar-item .method {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-right: 6px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-item.active .method.get,
+        .sidebar-item.active .method.post {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        .sidebar-item .method.get {
+            background: #dbeafe;
+            color: var(--color-get);
+        }
+
+        .sidebar-item .method.post {
+            background: #d1fae5;
+            color: var(--color-post);
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        /* API Endpoint Card */
+        .api-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            scroll-margin-top: 24px;
+        }
+
+        .api-card-header {
+            padding: 16px 20px;
+            background: #fafafa;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .http-method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .http-method.get {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .http-method.post {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .api-path {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--color-text);
+            word-break: break-all;
+        }
+
+        .api-card-body {
+            padding: 20px;
+        }
+
+        .api-description {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-bottom: 24px;
+        }
+
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subsection-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 16px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Table */
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .param-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: #f9fafb;
+            border-bottom: 2px solid var(--color-border);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .param-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .param-table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .param-table code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: var(--color-primary);
+        }
+
+        .param-type {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #eff6ff;
+            color: var(--color-primary);
+        }
+
+        .param-required {
+            color: var(--color-danger);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .param-optional {
+            color: var(--color-text-secondary);
+            font-size: 12px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--color-code-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+        }
+
+        .code-lang {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .code-block pre {
+            padding: 16px;
+            overflow-x: auto;
+            margin: 0;
+        }
+
+        .code-block code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .code-block .key { color: #7dd3fc; }
+        .code-block .string { color: #86efac; }
+        .code-block .number { color: #fde047; }
+        .code-block .boolean { color: #f0abfc; }
+        .code-block .comment { color: #6b7280; }
+        .code-block .null { color: #f0abfc; }
+
+        /* Enum List */
+        .enum-box {
+            background: #f9fafb;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .enum-box h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .enum-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 13px;
+            color: var(--color-text);
+            font-family: var(--font-mono);
+        }
+
+        .enum-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-box p + p {
+            margin-top: 4px;
+        }
+
+        /* Error Box */
+        .error-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .error-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-danger);
+            margin-bottom: 8px;
+        }
+
+        .error-box p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">概览</div>
+                <a href="#db-section" class="sidebar-item" id="nav-db">数据库设计</a>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">接口</div>
+                <a href="#api-share" class="sidebar-item" id="nav-api-share">
+                    <span class="method post">POST</span> 分享项目
+                </a>
+                <a href="#api-detail" class="sidebar-item" id="nav-api-detail">
+                    <span class="method get">GET</span> 获取项目详情
+                </a>
+                <a href="#api-list" class="sidebar-item" id="nav-api-list">
+                    <span class="method get">GET</span> 获取分享列表
+                </a>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Database Design -->
+            <div id="db-section" class="section">
+                <h2 class="section-title">数据库设计</h2>
+
+                <div class="info-box">
+                    <h3>表信息</h3>
+                    <p><strong>表名：</strong><code>HIK_OD_P2P_PLUGINS</code></p>
+                    <p><strong>描述：</strong>用于保存从我的设计项目分享给单个用户的项目数据（在 open-design 中，这种分享的数据是以插件形式存在的）</p>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">字段设计</h3>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>字段名</th>
+                                <th>类型</th>
+                                <th>说明</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>id</code></td>
+                                <td><span class="param-type">UUID</span></td>
+                                <td>主键</td>
+                                <td>唯一标识</td>
+                            </tr>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td><span class="param-type">String</span></td>
+                                <td>项目名称</td>
+                                <td class="param-required">必填</td>
+                            </tr>
+                            <tr>
+                                <td><code>source_project_id</code></td>
+                                <td><span class="param-type">String</span></td>
+                                <td>引用项目ID</td>
+                                <td class="param-required">必填</td>
+                            </tr>
+                            <tr>
+                                <td><code>meta_data</code></td>
+                                <td><span class="param-type">JSON</span></td>
+                                <td>项目元数据</td>
+                                <td>格式与 open-design.json 一致</td>
+                            </tr>
+                            <tr>
+                                <td><code>target_username</code></td>
+                                <td><span class="param-type">String</span></td>
+                                <td>目标用户名</td>
+                                <td class="param-required">必填</td>
+                            </tr>
+                            <tr>
+                                <td><code>source_username</code></td>
+                                <td><span class="param-type">String</span></td>
+                                <td>分享用户名</td>
+                                <td class="param-required">必填</td>
+                            </tr>
+                            <tr>
+                                <td><code>created_at</code></td>
+                                <td><span class="param-type">DateTime</span></td>
+                                <td>分享时间</td>
+                                <td>自动记录</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- API Design -->
+            <div class="section">
+                <h2 class="section-title">接口设计</h2>
+
+                <!-- POST API -->
+                <h3 id="api-share" style="font-size: 16px; font-weight: 700; color: var(--color-text); margin-bottom: 16px; padding-left: 4px;">
+                    <span style="display: inline-block; width: 24px; height: 24px; background: var(--color-primary); color: #fff; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; margin-right: 8px;">1</span>
+                    分享项目
+                </h3>
+                <div class="api-card">
+                    <div class="api-card-header">
+                        <span class="http-method post">POST</span>
+                        <span class="api-path">&lt;服务前缀&gt;/od/api/v1/user/plugin/share</span>
+                    </div>
+                    <div class="api-card-body">
+                        <p class="api-description">分享项目数据到服务器并关联目标用户，包括项目元数据和项目文件</p>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">请求参数</h3>
+                            <table class="param-table">
+                                <thead>
+                                    <tr>
+                                        <th>参数名</th>
+                                        <th>类型</th>
+                                        <th>必填</th>
+                                        <th>说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>name</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>项目名称</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>source_project_id</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>项目唯一ID，重复分享时以此作为查询依据</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>meta_data</code></td>
+                                        <td><span class="param-type">object</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>项目元数据</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>target_username</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>目标用户名</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>source_username</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>分享用户名</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>files</code></td>
+                                        <td><span class="param-type">array</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>项目文件列表</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">files 数组元素</h3>
+                            <table class="param-table">
+                                <thead>
+                                    <tr>
+                                        <th>参数名</th>
+                                        <th>类型</th>
+                                        <th>说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>name</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td>文件名（带路径，如：./assets/index.html）</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>content</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td>文件数据（图片为base64，网页为html代码）</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">请求示例</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON</span>
+                                </div>
+                                <pre><code>{
+  <span class="key">"name"</span>: <span class="string">"示例项目"</span>,
+  <span class="key">"source_project_id"</span>: <span class="string">"proj_123456"</span>,
+  <span class="key">"meta_data"</span>: {
+    <span class="comment">// 项目元数据，格式与 open-design.json 一致</span>
+  },
+  <span class="key">"target_username"</span>: <span class="string">"lisi"</span>,
+  <span class="key">"source_username"</span>: <span class="string">"zhangsan"</span>,
+  <span class="key">"files"</span>: [
+    {
+      <span class="key">"name"</span>: <span class="string">"./assets/index.html"</span>,
+      <span class="key">"content"</span>: <span class="string">"&lt;html&gt;...&lt;/html&gt;"</span>
+    },
+    {
+      <span class="key">"name"</span>: <span class="string">"./assets/logo.png"</span>,
+      <span class="key">"content"</span>: <span class="string">"data:image/png;base64,iVBORw0..."</span>
+    }
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">响应示例</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON</span>
+                                </div>
+                                <pre><code>{
+  <span class="key">"code"</span>: <span class="number">0</span>,
+  <span class="key">"msg"</span>: <span class="string">"success"</span>
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GET API - Single Plugin -->
+                <h3 id="api-detail" style="font-size: 16px; font-weight: 700; color: var(--color-text); margin-bottom: 16px; padding-left: 4px; margin-top: 32px;">
+                    <span style="display: inline-block; width: 24px; height: 24px; background: var(--color-primary); color: #fff; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; margin-right: 8px;">2</span>
+                    获取项目详情
+                </h3>
+                <div class="api-card">
+                    <div class="api-card-header">
+                        <span class="http-method get">GET</span>
+                        <span class="api-path">&lt;服务前缀&gt;/od/api/v1/user/plugin/share/&lt;pluginId&gt;</span>
+                    </div>
+                    <div class="api-card-body">
+                        <p class="api-description">获取分享给当前用户的项目信息</p>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">请求参数（Path）</h3>
+                            <table class="param-table">
+                                <thead>
+                                    <tr>
+                                        <th>参数名</th>
+                                        <th>类型</th>
+                                        <th>必填</th>
+                                        <th>说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>pluginId</code></td>
+                                        <td><span class="param-type">string</span></td>
+                                        <td class="param-required">是</td>
+                                        <td>查询ID</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">响应示例</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON</span>
+                                </div>
+                                <pre><code>{
+  <span class="key">"code"</span>: <span class="number">0</span>,
+  <span class="key">"msg"</span>: <span class="string">"success"</span>,
+  <span class="key">"data"</span>: {
+    <span class="key">"id"</span>: <span class="string">"550e8400-e29b-41d4-a716-446655440000"</span>,
+    <span class="key">"name"</span>: <span class="string">"示例项目"</span>,
+    <span class="key">"source_project_id"</span>: <span class="string">"proj_123456"</span>,
+    <span class="key">"source_username"</span>: <span class="string">"zhangsan"</span>,
+    <span class="key">"created_at"</span>: <span class="string">"2024-01-15T08:30:00Z"</span>,
+    <span class="key">"meta_data"</span>: {
+      <span class="comment">// 项目元数据，格式与 open-design.json 一致</span>
+    },
+    <span class="key">"files"</span>: [
+      {
+        <span class="key">"name"</span>: <span class="string">"./assets/index.html"</span>,
+        <span class="key">"path"</span>: <span class="string">"/od/&lt;静态目录&gt;/&lt;pluginId&gt;/assets/index.html"</span>
+      }
+    ]
+  }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">错误响应</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON</span>
+                                </div>
+                                <pre><code>{
+  <span class="key">"code"</span>: <span class="number">-1</span>,
+  <span class="key">"msg"</span>: <span class="string">"分享已失效"</span>
+}</code></pre>
+                            </div>
+                            <div class="error-box" style="margin-top: 16px;">
+                                <h3>⚠️ 分享失效说明</h3>
+                                <p>服务端定期清理失效数据，比如7天后，目标用户不点击"导入项目"，服务器上的数据自动清理。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GET API - List -->
+                <h3 id="api-list" style="font-size: 16px; font-weight: 700; color: var(--color-text); margin-bottom: 16px; padding-left: 4px; margin-top: 32px;">
+                    <span style="display: inline-block; width: 24px; height: 24px; background: var(--color-primary); color: #fff; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; margin-right: 8px;">3</span>
+                    获取分享列表
+                </h3>
+                <div class="api-card">
+                    <div class="api-card-header">
+                        <span class="http-method get">GET</span>
+                        <span class="api-path">&lt;服务前缀&gt;/od/api/v1/user/plugin/shares</span>
+                    </div>
+                    <div class="api-card-body">
+                        <p class="api-description">获取所有分享给当前用户的个人项目</p>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">请求参数</h3>
+                            <p style="color: var(--color-text-secondary); font-size: 14px; margin-bottom: 12px;">无</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">响应示例</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON</span>
+                                </div>
+                                <pre><code>{
+  <span class="key">"code"</span>: <span class="number">0</span>,
+  <span class="key">"msg"</span>: <span class="string">"success"</span>,
+  <span class="key">"data"</span>: [
+    {
+      <span class="key">"id"</span>: <span class="string">"550e8400-e29b-41d4-a716-446655440000"</span>,
+      <span class="key">"name"</span>: <span class="string">"示例项目"</span>,
+      <span class="key">"source_project_id"</span>: <span class="string">"proj_123456"</span>,
+      <span class="key">"source_username"</span>: <span class="string">"zhangsan"</span>,
+      <span class="key">"created_at"</span>: <span class="string">"2024-01-15T08:30:00Z"</span>
+    }
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 高亮当前可见区域的导航项
+        function updateActiveNav() {
+            const sections = ['db-section', 'api-share', 'api-detail', 'api-list'];
+            const navMap = {
+                'db-section': 'nav-db',
+                'api-share': 'nav-api-share',
+                'api-detail': 'nav-api-detail',
+                'api-list': 'nav-api-list'
+            };
+
+            let current = sections[0];
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            for (const id of sections) {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    // 当元素顶部进入视口上半部分时，认为当前区域是它
+                    if (rect.top <= windowHeight / 3) {
+                        current = id;
+                    }
+                }
+            }
+
+            // 更新激活状态
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            const activeNav = document.getElementById(navMap[current]);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+
+        // 监听滚动
+        window.addEventListener('scroll', updateActiveNav);
+        // 初始执行
+        updateActiveNav();
+    </script>
+</body>
+</html>
