@@ -1,7 +1,7 @@
 {
   "channel": "stable",
   "stableVersion": "0.16.3",
-  "releaseDate": "2026-08-15T09:57:54Z",
+  "releaseDate": "2026-08-16T02:49:25Z",
   "platforms": {
     "win": {
       "enabled": true,
@@ -9,11 +9,11 @@
       "artifacts": {
         "installer": {
           "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-setup.exe",
-          "sha256": "a4c5347df4f5d427f7d5cac2ab4d4f42b561681bed628c6fa9d8e6b4d867c51f"
+          "sha256": "36f51c3cdead6636e12ad83d56a0615c9acae391db77a1e50d0f13a670f0a7d5"
         },
-        "portable": {
-          "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-portable.zip",
-          "sha256": "c59894589790e964558c72a81d120b4b9f6d8315af7ee26cfec88383bb70b847"
+        "payload": {
+          "url": "https://github.com/ybvichi/open-design/releases/download/v0.16.3/Hi.Design-0.16.3-win-x64-payload.7z",
+          "sha256": "1ac053b71ec9feafb49014a50cb1396a417463cb7310c277eec15daf78bd15c6"
         }
       }
     }
