@@ -1,19 +1,47 @@
 {
   "channel": "stable",
-  "stableVersion": "0.19.2",
-  "releaseDate": "2026-08-16T10:18:42Z",
+  "stableVersion": "0.16.3",
+  "releaseDate": "2026-08-17T16:57:11Z",
   "platforms": {
+    "mac": {
+      "enabled": true,
+      "arch": "arm64",
+      "artifacts": {
+        "dmg": {
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-mac-arm64.dmg",
+          "sha256": "acbcd90fb4b9102853f6ab9c4c523bebc1b3307bda3ff399d0e200af25a6327a"
+        },
+        "payload": {
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-mac-arm64-payload.zip",
+          "sha256": "74a0c080e319559da7151dabda23e42b9d3ca429b3120d971f22793deffbb2b5"
+        }
+      }
+    },
+    "macIntel": {
+      "enabled": true,
+      "arch": "x64",
+      "artifacts": {
+        "dmg": {
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-mac-x64.dmg",
+          "sha256": "5ca5dfd6f83a36760cfe153ced13ad43fd29866beaf4219e9369bbc0cd5f4d6c"
+        },
+        "payload": {
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-mac-x64-payload.zip",
+          "sha256": "5f86bc5142c3ff846f3de2f04d91a26ebafa99e1e81fdf16257ba106425d2d65"
+        }
+      }
+    },
     "win": {
       "enabled": true,
       "arch": "x64",
       "artifacts": {
         "installer": {
-          "url": "https://github.com/ybvichi/open-design/releases/download/v0.19.2/Hi.Design-0.19.2-win-x64-setup.exe",
-          "sha256": "66b97027c0b609eda017d1375d0c40455511a2737428b8fb4c322f456c596e55"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-win-x64-setup.exe",
+          "sha256": "94c4c655b19099e7b4d785f5c8a29fa724633d1fbec4a673a7fde48d862013d0"
         },
         "payload": {
-          "url": "https://github.com/ybvichi/open-design/releases/download/v0.19.2/Hi.Design-0.19.2-win-x64-payload.7z",
-          "sha256": "3e785038d2319585fbb34db1b2afe783b8f014418064119c761bb20aac2ad2f8"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.3/Hi.Design-0.16.3-win-x64-payload.7z",
+          "sha256": "d737a793d179db9ecd3a4219575460db1d3c3ef9f94cdff0aaf96da4207582db"
         }
       }
     }
