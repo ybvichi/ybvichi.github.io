@@ -1,19 +1,19 @@
 {
   "channel": "stable",
-  "stableVersion": "0.16.4",
-  "releaseDate": "2026-08-19T13:18:38Z",
+  "stableVersion": "0.16.5",
+  "releaseDate": "2026-08-21T02:09:15Z",
   "platforms": {
     "mac": {
       "enabled": true,
       "arch": "arm64",
       "artifacts": {
         "dmg": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-mac-arm64.dmg",
-          "sha256": "1e12f9449db7d4ce4e9381f6159f61d336cfa4a31596de63c672c9099cf7e562"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-mac-arm64.dmg",
+          "sha256": "739c8e3ef7c683432677956ebe2a2c58031f9df312a12e36a15d02a52db6bb86"
         },
         "payload": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-mac-arm64-payload.zip",
-          "sha256": "6fc5ea28492ee83a575d2df48798ea82947d559f2510169f90dc370c152a91f9"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-mac-arm64-payload.zip",
+          "sha256": "c2b5c0d41ec756f299ef70c6a9f8074b95e7a79b5cab559f248ddf849e6b9ec2"
         }
       }
     },
@@ -22,12 +22,12 @@
       "arch": "x64",
       "artifacts": {
         "dmg": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-mac-x64.dmg",
-          "sha256": "b20bd3027c18f03f6ed9d8ab81f14dc54fd5f17ae608d68d15aad94285b727a9"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-mac-x64.dmg",
+          "sha256": "c1d8473af7988ad3ed507e022d52c6829e518fb51948b8922866d30ca73c5b01"
         },
         "payload": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-mac-x64-payload.zip",
-          "sha256": "10460028335fcf7b83767f063d7e61b3b00323f978d6521f9395cf4bfa44eae3"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-mac-x64-payload.zip",
+          "sha256": "f0e38217608f852a2348eb46bfd52d744eb2adddd27d1c064ce206f96e197c26"
         }
       }
     },
@@ -36,12 +36,12 @@
       "arch": "x64",
       "artifacts": {
         "installer": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-win-x64-setup.exe",
-          "sha256": "018876c7a0558b81ef06e7cbe12323069f571a15b1266861a27b93c1af45c2a5"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-win-x64-setup.exe",
+          "sha256": "730e22b48df9adaf5aa71f6b713babe848e056fb28fdd2382a8b716a0e5c8414"
         },
         "payload": {
-          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.4/Hi.Design-0.16.4-win-x64-payload.7z",
-          "sha256": "b85e8b181c2b3a8d580aa283188189c4c24f09f9dbd81294105d7ab7164a570e"
+          "url": "https://pixso.hikvision.com.cn/hik-plugin/ai-builder-web/public/webresources/download/hi-design/stable/versions/v0.16.5/Hi.Design-0.16.5-win-x64-payload.7z",
+          "sha256": "7bdf57a6678d1b296f1eec416cd823d919af30dd42351c8ebf8c460456c021f7"
         }
       }
     }
